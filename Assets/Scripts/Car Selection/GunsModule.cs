@@ -17,6 +17,7 @@ public class GunsModule : MonoBehaviour
     [SerializeField] Button steadyGun;
     [SerializeField] Button heavyGun;
     [Header("Stats")]
+    [SerializeField] TextMeshProUGUI gunName;
     [SerializeField] Slider fireRateSlider;
     [SerializeField] Slider damageSlider;
     [SerializeField] Slider criticalHitSlider;
@@ -26,7 +27,6 @@ public class GunsModule : MonoBehaviour
     [SerializeField] List<GameObject> gunList;
     [Header("Cars Parent")]
     [SerializeField] Transform carsParent;
-    [SerializeField] TextMeshProUGUI gunName;
 
     private int activeGunPos = 0;
     private CarGunPositions carGunPosition;
@@ -47,7 +47,8 @@ public class GunsModule : MonoBehaviour
     }
     private void DisplayGuns(int gunPosIndex, int gunIndex)
     {
-        Destroy(carGunPosition.GetPosition(gunPosIndex).GetChild(0));
+        if(carGunPosition.GetPosition(gunPosIndex).childCount != 0)
+            Destroy(carGunPosition.GetPosition(gunPosIndex).GetChild(0).gameObject);
         Instantiate(gunList[gunIndex], carGunPosition.GetPosition(gunPosIndex));
         SetStats(gunPosIndex);
     }

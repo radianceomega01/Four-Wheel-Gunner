@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 77183778}
   - component: {fileID: 77183777}
   m_Layer: 5
-  m_Name: Guns Panel
+  m_Name: Guns Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2100,7 +2100,7 @@ GameObject:
   - component: {fileID: 669520092}
   - component: {fileID: 669520091}
   m_Layer: 5
-  m_Name: Marker
+  m_Name: Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2277,20 +2277,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb829be332f33c48b151410b6a1bc68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  top: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
-  indicator: {fileID: 0}
-  lightGun: {fileID: 0}
-  steadyGun: {fileID: 0}
-  heavyGun: {fileID: 0}
-  fireRateSlider: {fileID: 0}
-  damageSlider: {fileID: 0}
-  criticalHitSlider: {fileID: 0}
+  top: {fileID: 1776036608}
+  left: {fileID: 503373260}
+  right: {fileID: 822796296}
+  indicator: {fileID: 669520091}
+  lightGun: {fileID: 414930993}
+  steadyGun: {fileID: 1341719787}
+  heavyGun: {fileID: 977805032}
+  gunName: {fileID: 1641443566}
+  fireRateSlider: {fileID: 1517742940}
+  damageSlider: {fileID: 556457377}
+  criticalHitSlider: {fileID: 180071909}
   gunPositionList: []
-  gunList: []
-  carsParent: {fileID: 0}
-  gunName: {fileID: 0}
+  gunList:
+  - {fileID: 706965010638011233, guid: 76c9ffc5ad610a34b9123bbaa02d4b20, type: 3}
+  - {fileID: 2680073183540347718, guid: dcb080dfa2abe304185599d422f111d5, type: 3}
+  - {fileID: 5250002451049317568, guid: 452c95194efba7540b66e9792110fa12, type: 3}
+  carsParent: {fileID: 377668331}
 --- !u!1 &691294795
 GameObject:
   m_ObjectHideFlags: 0
