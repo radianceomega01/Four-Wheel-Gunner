@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd3cb9ffe32aa04cb3996100fe35ef2, type: 3}
   m_Name: Light Gun
   m_EditorClassIdentifier: 
+  gunName: Light Gun
   fireRate: 90
   damage: 55
   criticalHit: 60

@@ -1,4 +1,6 @@
 
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -19,7 +21,6 @@ public class CarsModule : MonoBehaviour
     [Header("Cars Parent")]
     [SerializeField] Transform carsParent;
     [SerializeField] TextMeshProUGUI carName;
-
     private void Awake()
     {
         redSedan.onClick.AddListener(delegate { DisplayCar(0); });
@@ -27,16 +28,23 @@ public class CarsModule : MonoBehaviour
         greenTruck.onClick.AddListener(delegate { DisplayCar(2); });
     }
 
+    private void Start()
+    {
+        StartCoroutine(SetStats());
+    }
+
     private void DisplayCar(int index)
     {
         Destroy(carsParent.GetChild(0).gameObject);
         Instantiate(carList[index],carsParent);
-        SetStats();
+        StartCoroutine(SetStats());
     }
 
-    private void SetStats()
+    private IEnumerator SetStats()
     {
-        CarsSO carSO = carsParent.GetChild(0).GetComponent<CarsSO>();
+        yield return new WaitForEndOfFrame();
+
+        CarsSO carSO = carsParent.GetChild(0).GetComponent<Car>().GetSO();
         carName.text = carSO.carName;
         hpSlider.value = carSO.maxHP;
         speedSlider.value = carSO.maxSpeed;

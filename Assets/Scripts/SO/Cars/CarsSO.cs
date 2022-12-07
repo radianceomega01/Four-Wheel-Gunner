@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Car", menuName = "ScriptableObjects/Cars", order = 1)]
 public class CarsSO : ScriptableObject
 {
+    public int id;
     public string carName;
 
     [Header("Stats values(0 to 100)")]

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97066e834226fbd4e85751ab47bc73d1, type: 3}
   m_Name: Red Sedan
   m_EditorClassIdentifier: 
-  maxHP: 70
+  carName: Red Sedan
+  maxHP: 60
   maxSpeed: 90
-  controls: 80
+  controls: 70
   actualHP: 0
   actualMaxSpeed: 0
   actualControls: 0

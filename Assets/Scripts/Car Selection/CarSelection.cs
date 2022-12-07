@@ -18,13 +18,7 @@ public class CarSelection : MonoBehaviour
 
     private void OnBackBtnClicked()
     {
-        if (carsModule.activeInHierarchy)
-            SceneManager.LoadScene("Splash");
-        else
-        {
-            carsModule.SetActive(true);
-            gunsModule.SetActive(false);
-        }
+        SceneManager.LoadScene("Splash");
     }
 
     private void OnNextBtnClicked()

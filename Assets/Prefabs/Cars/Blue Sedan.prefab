@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 346472173899405971}
   - component: {fileID: 474747656623933676}
+  - component: {fileID: -4275026557770000784}
   m_Layer: 0
   m_Name: Blue Sedan
   m_TagString: Untagged
@@ -48,6 +49,19 @@ MonoBehaviour:
   topPos: {fileID: 8719990403879503485}
   leftPos: {fileID: 9115872673182013990}
   rightPos: {fileID: 4728946659706372246}
+--- !u!114 &-4275026557770000784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346472173899405972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a3d88c10fd2bf54fad95887503ad08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carSO: {fileID: 11400000, guid: 7fb807808ebb81b4c8ef7258ddb9006e, type: 2}
 --- !u!1 &391424478054010694
 GameObject:
   m_ObjectHideFlags: 0

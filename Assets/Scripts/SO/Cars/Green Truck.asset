@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97066e834226fbd4e85751ab47bc73d1, type: 3}
   m_Name: Green Truck
   m_EditorClassIdentifier: 
+  id: 2
+  carName: Green Truck
   maxHP: 90
-  maxSpeed: 60
-  controls: 70
+  maxSpeed: 50
+  controls: 50
   actualHP: 0
   actualMaxSpeed: 0
   actualControls: 0

@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97066e834226fbd4e85751ab47bc73d1, type: 3}
   m_Name: Blue Sedan
   m_EditorClassIdentifier: 
-  maxHP: 80
-  maxSpeed: 75
+  id: 1
+  carName: Blue Sedan
+  maxHP: 70
+  maxSpeed: 70
   controls: 90
   actualHP: 0
   actualMaxSpeed: 0

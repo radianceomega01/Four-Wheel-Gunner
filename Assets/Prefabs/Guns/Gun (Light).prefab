@@ -200,6 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 706965010638011234}
+  - component: {fileID: 3008971668268409944}
   m_Layer: 0
   m_Name: Gun (Light)
   m_TagString: Untagged
@@ -225,6 +226,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3008971668268409944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706965010638011233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505fe29b684d27746a9b9398c8f2153c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunSO: {fileID: 11400000, guid: 95fb499cfb2b2344e8e08fdc84045c55, type: 2}
 --- !u!1 &8691421974682117561
 GameObject:
   m_ObjectHideFlags: 0
