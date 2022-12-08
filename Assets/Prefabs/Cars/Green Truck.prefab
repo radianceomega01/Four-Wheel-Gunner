@@ -76,9 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd0f0a6c32ac0b94bbe1fc04dc6fda52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topPos: {fileID: 778242836788615473}
-  leftPos: {fileID: 1476788760800855714}
-  rightPos: {fileID: 1134309371748290846}
+  gunPositions: {fileID: 9002321533954561417}
 --- !u!114 &-5566062173554567253
 MonoBehaviour:
   m_ObjectHideFlags: 0

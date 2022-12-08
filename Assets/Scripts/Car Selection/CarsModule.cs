@@ -21,6 +21,9 @@ public class CarsModule : MonoBehaviour
     [Header("Cars Parent")]
     [SerializeField] Transform carsParent;
     [SerializeField] TextMeshProUGUI carName;
+
+    public int CarIndex { get; set; }
+
     private void Awake()
     {
         redSedan.onClick.AddListener(delegate { DisplayCar(0); });
@@ -35,6 +38,7 @@ public class CarsModule : MonoBehaviour
 
     private void DisplayCar(int index)
     {
+        CarSpawnDetails.Instance.CarIndex = index;
         Destroy(carsParent.GetChild(0).gameObject);
         Instantiate(carList[index],carsParent);
         StartCoroutine(SetStats());

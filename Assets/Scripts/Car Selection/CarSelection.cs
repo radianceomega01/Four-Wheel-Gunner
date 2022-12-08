@@ -7,8 +7,8 @@ public class CarSelection : MonoBehaviour
 {
     [SerializeField] Button backBtn;
     [SerializeField] Button nextBtn;
-    [SerializeField] GameObject carsModule;
-    [SerializeField] GameObject gunsModule;
+    [SerializeField] CarsModule carsModule;
+    [SerializeField] GunsModule gunsModule;
 
     private void Awake()
     {
@@ -23,12 +23,14 @@ public class CarSelection : MonoBehaviour
 
     private void OnNextBtnClicked()
     {
-        if (gunsModule.activeInHierarchy)
+        if (gunsModule.gameObject.activeInHierarchy)
+        {
             SceneManager.LoadScene("Gameplay");
+        }
         else
         {
-            carsModule.SetActive(false);
-            gunsModule.SetActive(true);
+            carsModule.gameObject.SetActive(false);
+            gunsModule.gameObject.SetActive(true);
         }
     }
 }

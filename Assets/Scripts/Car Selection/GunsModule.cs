@@ -63,6 +63,8 @@ public class GunsModule : MonoBehaviour
     }
     private void DisplayGuns(int gunPosIndex, int gunIndex)
     {
+        CarSpawnDetails.Instance.GunPosition[gunPosIndex] = gunIndex;
+
         if(carGunPosition.GetPosition(gunPosIndex).childCount != 0)
             Destroy(carGunPosition.GetPosition(gunPosIndex).GetChild(0).gameObject);
         Instantiate(gunList[gunIndex], carGunPosition.GetPosition(gunPosIndex));
