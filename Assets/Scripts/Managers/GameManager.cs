@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<GameObject> gunList;
     [SerializeField] Transform playerCarParent;
     [SerializeField] Transform playerCarSpawnPos;
+
+    public event Action OnCarSpawned;
     private void Awake()
     {
         if (Instance == null || Instance != this)
@@ -32,5 +35,6 @@ public class GameManager : MonoBehaviour
             Instantiate(gunList[CarSpawnDetails.Instance.GunPosition[i]],
                 carGunPositions.GetPosition(i).position, Quaternion.identity, carGunPositions.GetPosition(i));
         }
+        OnCarSpawned.Invoke();
     }
 }

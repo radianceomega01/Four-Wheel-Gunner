@@ -32,7 +32,7 @@ public class CarController : MonoBehaviour
     private void Start()
     {
         rigidBody = transform.GetComponent<Rigidbody>();
-        rigidBody.centerOfMass = Vector3.up * -0.9f;
+        rigidBody.centerOfMass = Vector3.forward * -0.1f;
     }
 
     private void FixedUpdate()
