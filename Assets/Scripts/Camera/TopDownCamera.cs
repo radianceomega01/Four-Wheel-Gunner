@@ -17,8 +17,11 @@ public class TopDownCamera : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isTargetSet)
+        if (isTargetSet)
+        { 
             target.position = carParent.GetChild(0).position;
+            target.rotation = carParent.GetChild(0).rotation;
+        }
     }
 
     private void OnDestroy()

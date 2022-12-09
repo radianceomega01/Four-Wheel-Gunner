@@ -17,6 +17,7 @@ MonoBehaviour:
   fireRate: 75
   damage: 70
   criticalHit: 80
-  fireInterval: 0
-  damagePerBullet: 0
+  fireInterval: 0.4
+  damagePerBullet: 6
   criticalHitRate: 0
+  bulletCount: 220

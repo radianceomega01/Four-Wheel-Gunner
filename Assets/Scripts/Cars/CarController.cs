@@ -11,10 +11,11 @@ public class CarController : MonoBehaviour
     private float verticalInput;
     private float currentSteerAngle;
     private float currentbreakForce;
-    private bool isBreaking;
+    private bool isBraking;
+    private int isAccelerating;
 
     [SerializeField] private float motorForce;
-    [SerializeField] private float breakForce;
+    [SerializeField] private float brakeForce;
     [SerializeField] private float maxSteerAngle;
 
     [SerializeField] private WheelCollider frontLeftWheelCollider;
@@ -42,49 +43,35 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         UpdateWheels();
-    }
 
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-            CarReset();
         if (verticalInput == 0)
         {
             rigidBody.velocity = Vector3.Lerp(rigidBody.velocity, Vector3.zero, Time.deltaTime * 3);
-            //print("done");
-
         }
-        //else if(verticalInput == 1)
-        //{
-        //    carRb.velocity = transform.forward * 10;
-
-        //}
-
     }
 
-    public void SetHorizontalInput(int value)
-    {
-        horizontalInput = value;
-    }
-    public void SetVerticalInput(int value)
-    {
-        verticalInput = value;
-    }
     private void GetInput()
     {
         verticalInput = Input.GetAxis(VERTICAL);
-        // print(verticalInput);
         horizontalInput = Input.GetAxis(HORIZONTAL);
-        isBreaking = Input.GetKey(KeyCode.Space);
+        isBraking = Input.GetKey(KeyCode.Space);
 
     }
 
+    public void SetJoystickInput(float vertical, float horizontal)
+    {
+        verticalInput = vertical;
+        horizontalInput = horizontal;
+    }
+
+    public void SetBrakeInput(bool brake) => isBraking = brake;
+    public void SetAccelerationInput(int acceleration) => isAccelerating = acceleration;
+
     private void HandleMotor()
     {
-        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
-        currentbreakForce = isBreaking ? breakForce : 0f;
+        frontLeftWheelCollider.motorTorque = verticalInput* isAccelerating * motorForce;
+        frontRightWheelCollider.motorTorque = verticalInput* isAccelerating * motorForce;
+        currentbreakForce = isBraking ? brakeForce : 0f;
         ApplyBreaking();
     }
 
@@ -118,19 +105,5 @@ public class CarController : MonoBehaviour
         wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
-    }
-
-    void CarReset()
-    {
-
-        transform.rotation = new Quaternion(0, 0, 0, 0);
-
-    }
-
-
-    public void SetStartGamePos(Transform pos)
-    {
-        this.transform.position = pos.position;
-        this.transform.rotation = pos.rotation;
     }
 }

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<GameObject> gunList;
     [SerializeField] Transform playerCarParent;
     [SerializeField] Transform playerCarSpawnPos;
+    [SerializeField] Transform bulletPool;
+    [SerializeField] Transform activeBulletsParent;
 
     public event Action OnCarSpawned;
     private void Awake()
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour
         SpawnPlayerCar();
     }
 
+    public Transform GetBulletPool() => bulletPool;
+    public Transform GetActiveBulletsParent() => activeBulletsParent;
     private void SpawnPlayerCar()
     {
         GameObject instantiatedCar =  Instantiate(carList[CarSpawnDetails.Instance.CarIndex], 
@@ -32,9 +36,11 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < carGunPositions.GetGunPositionTransform().childCount; i++)
         {
-            Instantiate(gunList[CarSpawnDetails.Instance.GunPosition[i]],
-                carGunPositions.GetPosition(i).position, Quaternion.identity, carGunPositions.GetPosition(i));
+            if(CarSpawnDetails.Instance.GunPosition[i] != -1)
+                Instantiate(gunList[CarSpawnDetails.Instance.GunPosition[i]],
+                    carGunPositions.GetPosition(i).position, Quaternion.identity, carGunPositions.GetPosition(i));
         }
+        instantiatedCar.tag = "Player";
         OnCarSpawned.Invoke();
     }
 }

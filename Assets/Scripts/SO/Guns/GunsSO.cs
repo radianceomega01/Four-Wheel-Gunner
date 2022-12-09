@@ -16,4 +16,5 @@ public class GunsSO : ScriptableObject
     public float fireInterval;
     public float damagePerBullet;
     public float criticalHitRate;
+    public int bulletCount;
 }
