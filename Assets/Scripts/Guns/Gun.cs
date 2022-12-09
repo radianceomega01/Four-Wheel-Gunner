@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
 
     private int bulletCount;
     private bool isHold;
-    private float shootForce = 4f;
+    private float shootForce = 10f;
     private GameManager gameManager;
 
     private void Start()
@@ -34,31 +34,32 @@ public class Gun : MonoBehaviour
 
     IEnumerator Shoot(float interval)
     {
-        if (!isHold)
-            yield return null;
-        print(isHold);
-        GameObject bullet;
-        if (gameManager.GetBulletPool().childCount != 0)
+        if (isHold)
         {
-            bullet = gameManager.GetBulletPool().GetChild(0).gameObject;
-            bullet.transform.position = nozzle.position;
-            bullet.transform.rotation = Quaternion.identity;
-            bullet.SetActive(true);
-            bullet.transform.SetParent(gameManager.GetActiveBulletsParent());
-            
-        }
-        else
-        {
-            bullet = Instantiate(bulletPrefab, nozzle.position, Quaternion.identity, gameManager.GetActiveBulletsParent());
-        }
+            GameObject bullet;
+            if (gameManager.GetBulletPool().childCount != 0)
+            {
+                bullet = gameManager.GetBulletPool().GetChild(0).gameObject;
+                bullet.transform.position = nozzle.position;
+                bullet.transform.rotation = nozzle.rotation;
+                bullet.SetActive(true);
+                bullet.transform.SetParent(gameManager.GetActiveBulletsParent());
 
-        bullet.GetComponent<Bullet>().Initialize(gunSO.damagePerBullet);
-        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * shootForce, ForceMode.Impulse);
-        bulletCount--;
-        yield return new WaitForSeconds(interval);
-        if (bulletCount != 0)
-        {
-            StartCoroutine(Shoot(interval));
+            }
+            else
+            {
+                bullet = Instantiate(bulletPrefab, nozzle.position, nozzle.rotation, gameManager.GetActiveBulletsParent());
+            }
+
+            bullet.GetComponent<Bullet>().Initialize(gunSO.damagePerBullet);
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * shootForce, ForceMode.Impulse);
+            bulletCount--;
+            yield return new WaitForSeconds(interval);
+            if (bulletCount > 0)
+            {
+                StartCoroutine(Shoot(interval));
+            }
         }
+        print(bulletCount);
     }
 }
