@@ -17,6 +17,6 @@ MonoBehaviour:
   maxHP: 90
   maxSpeed: 50
   controls: 50
-  actualHP: 0
-  actualMaxSpeed: 0
-  actualControls: 0
+  actualHP: 100
+  actualMaxSpeed: 700
+  actualControls: 5

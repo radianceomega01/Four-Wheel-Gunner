@@ -12,7 +12,6 @@ public class CarController : MonoBehaviour
     private float currentSteerAngle;
     private float currentbreakForce;
     private bool isBraking;
-    private int isAccelerating;
 
     [SerializeField] private float motorForce;
     [SerializeField] private float brakeForce;
@@ -44,10 +43,10 @@ public class CarController : MonoBehaviour
         HandleSteering();
         UpdateWheels();
 
-        if (verticalInput == 0)
+        /*if (verticalInput == 0)
         {
             rigidBody.velocity = Vector3.Lerp(rigidBody.velocity, Vector3.zero, Time.deltaTime * 3);
-        }
+        }*/
     }
 
     private void GetInput()
@@ -58,19 +57,18 @@ public class CarController : MonoBehaviour
 
     }
 
-    public void SetJoystickInput(float vertical, float horizontal)
+    public void SetJoystickInput(float horizontal)
     {
-        verticalInput = vertical;
         horizontalInput = horizontal;
     }
 
     public void SetBrakeInput(bool brake) => isBraking = brake;
-    public void SetAccelerationInput(int acceleration) => isAccelerating = acceleration;
+    public void SetAccelerationInput(int acceleration) => verticalInput = acceleration;
 
     private void HandleMotor()
     {
-        frontLeftWheelCollider.motorTorque = verticalInput* isAccelerating * motorForce;
-        frontRightWheelCollider.motorTorque = verticalInput* isAccelerating * motorForce;
+        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
+        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
         currentbreakForce = isBraking ? brakeForce : 0f;
         ApplyBreaking();
     }

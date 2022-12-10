@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     public Transform GetBulletPool() => bulletPool;
     public Transform GetActiveBulletsParent() => activeBulletsParent;
+    public Transform GetPlayerCar() => playerCarParent.GetChild(0);
+    public List<GameObject> GetGunList() => gunList;
     private void SpawnPlayerCar()
     {
         GameObject instantiatedCar =  Instantiate(carList[CarSpawnDetails.Instance.CarIndex], 

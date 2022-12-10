@@ -35,16 +35,19 @@ public class GunsModule : MonoBehaviour
         {
             activeGunPos = 0;
             MoveIndicator(top);
+            DisplayGuns(activeGunPos, 0);
         });
         left.onClick.AddListener(() =>
         {
             activeGunPos = 1;
             MoveIndicator(left);
+            DisplayGuns(activeGunPos, 0);
         });
         right.onClick.AddListener(() =>
         {
             activeGunPos = 2;
             MoveIndicator(right);
+            DisplayGuns(activeGunPos, 0);
         });
 
         lightGun.onClick.AddListener(delegate { DisplayGuns(activeGunPos, 0); });
@@ -55,6 +58,7 @@ public class GunsModule : MonoBehaviour
     private void Start()
     {
         carGunPosition = carsParent.GetChild(0).GetComponent<CarGunPositions>();
+        DisplayGuns(activeGunPos, 0);
     }
 
     private void MoveIndicator(Button button)

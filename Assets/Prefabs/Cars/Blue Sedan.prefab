@@ -378,9 +378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68b9eb32cdc4d94181a2feb809dee17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  motorForce: 1000
-  breakForce: 3000
-  maxSteerAngle: 30
+  motorForce: 800
+  brakeForce: 3000
+  maxSteerAngle: 15
   frontLeftWheelCollider: {fileID: 7047660003386024631}
   frontRightWheelCollider: {fileID: 8581206203556459636}
   rearLeftWheelCollider: {fileID: 68758929880480421}
@@ -675,7 +675,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_Enabled: 1
 --- !u!1 &1173874081234905101
 GameObject:
@@ -2618,7 +2618,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_Enabled: 1
 --- !u!1 &6331203711934483487
 GameObject:

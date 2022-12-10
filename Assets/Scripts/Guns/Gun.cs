@@ -60,6 +60,5 @@ public class Gun : MonoBehaviour
                 StartCoroutine(Shoot(interval));
             }
         }
-        print(bulletCount);
     }
 }
