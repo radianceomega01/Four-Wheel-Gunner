@@ -33,21 +33,15 @@ public class GunsModule : MonoBehaviour
     {
         top.onClick.AddListener(() =>
         {
-            activeGunPos = 0;
-            MoveIndicator(top);
-            DisplayGuns(activeGunPos, 0);
+           OnGunPositionBtnClicked(0, top);
         });
         left.onClick.AddListener(() =>
         {
-            activeGunPos = 1;
-            MoveIndicator(left);
-            DisplayGuns(activeGunPos, 0);
+            OnGunPositionBtnClicked(1,left);
         });
         right.onClick.AddListener(() =>
         {
-            activeGunPos = 2;
-            MoveIndicator(right);
-            DisplayGuns(activeGunPos, 0);
+            OnGunPositionBtnClicked(2, right);
         });
 
         lightGun.onClick.AddListener(delegate { DisplayGuns(activeGunPos, 0); });
@@ -65,6 +59,21 @@ public class GunsModule : MonoBehaviour
     {
         indicator.localPosition = new Vector3(indicator.localPosition.x, button.GetComponent<RectTransform>().localPosition.y);
     }
+
+    private void OnGunPositionBtnClicked(int pos, Button button)
+    {
+        activeGunPos = pos;
+        MoveIndicator(button);
+        if (carGunPosition.GetPosition(activeGunPos).childCount != 0)
+        {
+            StartCoroutine(SetStats(pos));
+        }
+        else
+        {
+            DisplayGuns(activeGunPos, 0);
+        }
+    }
+
     private void DisplayGuns(int gunPosIndex, int gunIndex)
     {
         CarSpawnDetails.Instance.GunPosition[gunPosIndex] = gunIndex;

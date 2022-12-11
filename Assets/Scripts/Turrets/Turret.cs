@@ -8,11 +8,13 @@ public class Turret : MonoBehaviour
     [SerializeField] Transform gunPosition;
     [SerializeField] Transform axle;
 
-    private float criticalDistance = 5f;
-    float rotationSpeed = 0.5f;
+    private float criticalDistance = 15f;
+    private float shootDistance = 12f;
+    private float rotationSpeed = 0.5f;
+    private bool shootState;
     private Gun gun;
 
-    Vector3 targetDir;
+    private Vector3 targetDir;
 
     public static event Action OnDestroyed;
     public void Initialize(Gun turretGun)
@@ -28,12 +30,23 @@ public class Turret : MonoBehaviour
             targetDir =  GameManager.Instance.GetPlayerCar().position - axle.position;
             Quaternion targetRotation = Quaternion.LookRotation(targetDir);
             axle.rotation = Quaternion.Lerp(axle.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-            
-            //gun.PrepareToShoot(true);
+        }
+        if ((GameManager.Instance.GetPlayerCar().position - transform.position).magnitude < shootDistance)
+        {
+            shootInput(true);
         }
         else
         {
-            gun.PrepareToShoot(false);
+            shootInput(false);
+        }
+    }
+
+    private void shootInput(bool value)
+    {
+        if (shootState != value)
+        {
+            gun.PrepareToShoot(value);
+            shootState = value;
         }
     }
 }
