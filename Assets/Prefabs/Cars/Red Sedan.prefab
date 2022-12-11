@@ -1176,6 +1176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carSO: {fileID: 11400000, guid: 0efd995a7a41ae549b23824274a7db12, type: 2}
+  blast: {fileID: 198220379293217532, guid: d8f0099df63275647a8bcf646df1ca00, type: 3}
 --- !u!54 &3056881022115700779
 Rigidbody:
   m_ObjectHideFlags: 0

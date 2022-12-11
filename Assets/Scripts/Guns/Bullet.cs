@@ -10,18 +10,19 @@ public class Bullet : MonoBehaviour
         Damage = damage;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (collision.gameObject.tag == "Turret")
+        if (collider.tag == "Turret")
         {
-
+            collider.GetComponent<Turret>().TakeDamage(Damage);
         }
-        else if (collision.gameObject.tag == "Player")
-        { 
-        
+        else if (collider.tag == "Player")
+        {
+            collider.GetComponent<Car>().TakeDamage(Damage);
         }
         gameObject.SetActive(false);
         transform.position = Vector3.zero;
+        GetComponent<Rigidbody>().isKinematic = true;
         transform.SetParent(GameManager.Instance.GetBulletPool());
     }
 }

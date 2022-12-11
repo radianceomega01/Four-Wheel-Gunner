@@ -13,6 +13,9 @@ public class GunsModule : MonoBehaviour
     [SerializeField] Button right;
     [Header("Gun Position Marker")]
     [SerializeField] RectTransform indicator;
+    [Header("Game Time")]
+    [SerializeField] Slider timeSlider;
+    [SerializeField] TextMeshProUGUI timeTxt;
     [Header("Gun Buttons")]
     [SerializeField] Button lightGun;
     [SerializeField] Button steadyGun;
@@ -47,10 +50,13 @@ public class GunsModule : MonoBehaviour
         lightGun.onClick.AddListener(delegate { DisplayGuns(activeGunPos, 0); });
         steadyGun.onClick.AddListener(delegate { DisplayGuns(activeGunPos, 1); });
         heavyGun.onClick.AddListener(delegate { DisplayGuns(activeGunPos, 2); });
+
+        timeSlider.onValueChanged.AddListener(SetGameTime);
     }
 
     private void Start()
     {
+        SetGameTime(0);
         carGunPosition = carsParent.GetChild(0).GetComponent<CarGunPositions>();
         DisplayGuns(activeGunPos, 0);
     }
@@ -94,6 +100,25 @@ public class GunsModule : MonoBehaviour
         criticalHitSlider.value = gunSo.criticalHit;
     }
 
+    private void SetGameTime(float value)
+    {
+        int gameTime = 30;
+        switch (value)
+        {
+            case 0: gameTime = 30;
+                timeTxt.text = gameTime.ToString();
+                break;
+            case 1:
+                gameTime = 60;
+                timeTxt.text = gameTime.ToString();
+                break;
+            case 2:
+                gameTime = 70;
+                timeTxt.text = "\u221E";
+                break;
+        }
+        CarSpawnDetails.Instance.GameTime = gameTime;
+    }
     private void OnDestroy()
     {
         top.onClick.RemoveAllListeners();

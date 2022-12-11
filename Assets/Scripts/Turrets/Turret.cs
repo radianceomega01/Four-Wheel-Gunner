@@ -1,16 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
     [SerializeField] Transform gunPosition;
     [SerializeField] Transform axle;
+    [SerializeField] ParticleSystem blast;
 
     private float criticalDistance = 15f;
     private float shootDistance = 12f;
     private float rotationSpeed = 0.5f;
+    private float health = 30f;
     private bool shootState;
     private Gun gun;
 
@@ -47,6 +50,17 @@ public class Turret : MonoBehaviour
         {
             gun.PrepareToShoot(value);
             shootState = value;
+        }
+    }
+
+    public void TakeDamage(float value)
+    {
+        health -= value;
+        if (health <= 0)
+        {
+            Instantiate(blast, transform.position, transform.rotation);
+            Destroy(gameObject);
+            OnDestroyed?.Invoke();
         }
     }
 }

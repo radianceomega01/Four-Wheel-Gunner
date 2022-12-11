@@ -7,6 +7,7 @@ public class CarSpawnDetails : MonoBehaviour
     public static CarSpawnDetails Instance;
 
     public int CarIndex { get; set; }
+    public int GameTime { get; set; }
 
     public int[] GunPosition { get; set;} 
     private void Awake()

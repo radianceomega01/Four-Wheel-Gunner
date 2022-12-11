@@ -12,11 +12,13 @@ public class TurretSpawner : MonoBehaviour
     private int randomTurretGun;
     private int maxTurrets = 3;
     private int spawnThreshold = 1;
+    private int destroyThreshold = 20;
     private int activeTurrets;
 
     private void Start()
     {
         GameManager.Instance.OnCarSpawned += Spawn;
+        Turret.OnDestroyed += CheckForReSpawn;
     }
 
     private void Spawn()
@@ -44,4 +46,15 @@ public class TurretSpawner : MonoBehaviour
         randomSpawnPoint = Random.Range(0, turretSpawnPoints.childCount);
     }
 
+    private void CheckForReSpawn()
+    {
+        activeTurrets--;
+        destroyThreshold--;
+        if (destroyThreshold <= 0)
+            GameManager.Instance.OnGameWon();
+        if (activeTurrets <= spawnThreshold)
+        {
+            Spawn();
+        }
+    }
 }

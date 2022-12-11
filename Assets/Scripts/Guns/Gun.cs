@@ -52,6 +52,7 @@ public class Gun : MonoBehaviour
             }
 
             bullet.GetComponent<Bullet>().Initialize(gunSO.damagePerBullet);
+            bullet.GetComponent<Rigidbody>().isKinematic = false;
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * shootForce, ForceMode.Impulse);
             bulletCount--;
             yield return new WaitForSeconds(interval);
