@@ -10,9 +10,9 @@ public class Turret : MonoBehaviour
     [SerializeField] Transform axle;
     [SerializeField] ParticleSystem blast;
 
-    private float criticalDistance = 15f;
-    private float shootDistance = 12f;
-    private float rotationSpeed = 0.5f;
+    private float criticalDistance = 25f;
+    private float shootDistance = 20f;
+    private float rotationSpeed = 0.8f;
     private float health = 30f;
     private bool shootState;
     private Gun gun;

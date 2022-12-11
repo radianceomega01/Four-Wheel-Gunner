@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
 
     private int bulletCount;
     private bool isHold;
-    private float shootForce = 10f;
+    private float shootForce = 15f;
     private GameManager gameManager;
 
     private void Start()
@@ -34,7 +34,7 @@ public class Gun : MonoBehaviour
 
     IEnumerator Shoot(float interval)
     {
-        if (isHold)
+        if (isHold && bulletCount > 0)
         {
             GameObject bullet;
             if (gameManager.GetBulletPool().childCount != 0)

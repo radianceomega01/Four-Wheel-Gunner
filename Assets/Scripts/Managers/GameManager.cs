@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
         lostAndRetryBtn.onClick.AddListener(RetryGame);
         wonAndRetryBtn.onClick.AddListener(RetryGame);
 
+        Time.timeScale = 1f;
+
     }
 
     private void Start()
@@ -104,8 +106,6 @@ public class GameManager : MonoBehaviour
     {
         if (playerCar.Health > 0)
             OnGameWon();
-        else
-            OnCarDestroyed();
     }
 
     private void PauseGame()
@@ -121,8 +121,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void RetryGame()
-    {
-        Time.timeScale = 1f;
+    { 
         SceneManager.LoadScene("Gameplay");
     }
 }
