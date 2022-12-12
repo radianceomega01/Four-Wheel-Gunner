@@ -8,7 +8,7 @@ public class DropSpawner : MonoBehaviour
     [SerializeField] Transform DropsParent;
     [SerializeField] GameObject cratePrefab;
 
-    private float timeToRespawn = 12;
+    private float timeToRespawn = 15;
     private bool startTimer;
     private float timeLeft;
     private int randomPositionIndex;

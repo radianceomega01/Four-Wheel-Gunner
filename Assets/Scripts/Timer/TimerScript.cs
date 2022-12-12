@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour
 {
+    [SerializeField] GameObject timeParent;
+    [SerializeField] TextMeshProUGUI time;
 
     private float maxTime;
     private float timeLeft;
@@ -35,6 +38,7 @@ public class TimerScript : MonoBehaviour
             if (timeLeft > 0)
             {   
                 timeLeft -= Time.deltaTime;
+                time.text = ((int)timeLeft).ToString();
             }
             else
             {
@@ -52,6 +56,7 @@ public class TimerScript : MonoBehaviour
     public void SetStatusOfTime(bool Status)
     {
         startTimer = Status;
+        timeParent.SetActive(true);
     }
 }
 
