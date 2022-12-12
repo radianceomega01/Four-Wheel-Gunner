@@ -20,6 +20,10 @@ public class Bullet : MonoBehaviour
         {
             collider.GetComponent<Car>().TakeDamage(Damage);
         }
+        else if (collider.tag == "Crate")
+        {
+            collider.GetComponent<Crate>().TakeDamage(Damage);
+        }
         gameObject.SetActive(false);
         transform.position = Vector3.zero;
         GetComponent<Rigidbody>().isKinematic = true;

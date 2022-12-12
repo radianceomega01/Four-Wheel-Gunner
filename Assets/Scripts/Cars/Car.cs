@@ -27,4 +27,10 @@ public class Car : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void IncreaseHealth(float amount)
+    {
+        Health += amount;
+        GameManager.Instance.UpdateHealthBar(Health);
+    }
 }

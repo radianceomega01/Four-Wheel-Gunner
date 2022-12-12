@@ -19,13 +19,14 @@ public class Gun : MonoBehaviour
         bulletCount = gunSO.bulletCount;
         gameManager = GameManager.Instance;
     }
+
+    public void IncreaseBullets(int amount)
+    {
+        bulletCount += amount;
+    }
     public void PrepareToShoot(bool hold)
     {
         isHold = hold;
-        /*if (!isHold)
-            return;
-        else
-            Debug.Log("Shoot");*/
         if (!isHold)
             return;
         else
