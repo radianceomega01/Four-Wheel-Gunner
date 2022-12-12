@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Health")]
     [SerializeField] Slider healthBar;
+    [SerializeField] Image healthBarFill;
+    [SerializeField] Gradient healthColorGradient;
 
     [Header("Panels")]
     [SerializeField] GameObject pausePanel;
@@ -74,7 +76,7 @@ public class GameManager : MonoBehaviour
                     carGunPositions.GetPosition(i).position, Quaternion.identity, carGunPositions.GetPosition(i));
         }
         instantiatedCar.tag = "Player";
-        healthBar.maxValue = instantiatedCar.GetComponent<Car>().Health;
+        healthBar.maxValue = playerCar.Health;
         healthBar.value = healthBar.maxValue;
         OnCarSpawned.Invoke();
     }
@@ -88,7 +90,11 @@ public class GameManager : MonoBehaviour
             TimerScript.Instance.SetStatusOfTime(true);
         }
     }
-    public void UpdateHealthBar(float value) => healthBar.value = value;
+    public void UpdateHealthBar(float value)
+    {
+        healthBar.value = value;
+        healthBarFill.color = healthColorGradient.Evaluate(value/ playerCar.GetSO().actualHP);
+    }
     public void OnCarDestroyed()
     {
         Task.Delay(500);
