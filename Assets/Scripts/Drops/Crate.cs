@@ -23,12 +23,6 @@ public class Crate : MonoBehaviour
         GameObject instObj = Instantiate(collectablePrefab, transform.position, Quaternion.identity);
         Collectables collectable = instObj.GetComponent<Collectables>();
         collectable.Initialize((Collectables.Type)randomCollectableType);
-        StartCoroutine(WaitBeforeDestroy());
-    }
-
-    IEnumerator WaitBeforeDestroy()
-    {
-        yield return new WaitForEndOfFrame();
         Destroy(gameObject);
     }
 }

@@ -31,6 +31,9 @@ public class Car : MonoBehaviour
     public void IncreaseHealth(float amount)
     {
         Health += amount;
+        if (Health > carSO.actualHP)
+            Health = carSO.actualHP;
+
         GameManager.Instance.UpdateHealthBar(Health);
     }
 }

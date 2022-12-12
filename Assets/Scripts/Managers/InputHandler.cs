@@ -23,7 +23,7 @@ public class InputHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        carController.SetJoystickInput(joyStick.Horizontal);
+        carController.SetJoystickInput(joyStick.Vertical, joyStick.Horizontal);
     }
 
     public void SetAccelerationInput(int value)

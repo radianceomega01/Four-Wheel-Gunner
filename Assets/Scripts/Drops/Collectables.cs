@@ -48,14 +48,8 @@ public class Collectables : MonoBehaviour
                     carGunPositions.GetPosition(i).GetChild(0).GetComponent<Gun>().IncreaseBullets((int)increaseAmount);
                 }   
             }
-
-            StartCoroutine(WaitBeforeDestroy());
+            Destroy(gameObject);
         }
-    }
-    IEnumerator WaitBeforeDestroy()
-    {
-        yield return new WaitForEndOfFrame();
-        Destroy(gameObject);
     }
 
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class CarController : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
+    private int acceleration;
     private float currentSteerAngle;
     private float currentbreakForce;
     private bool isBraking;
@@ -53,22 +55,27 @@ public class CarController : MonoBehaviour
     {
         verticalInput = Input.GetAxis(VERTICAL);
         horizontalInput = Input.GetAxis(HORIZONTAL);
+        acceleration = Convert.ToInt32(Input.GetKey(KeyCode.LeftShift));
         isBraking = Input.GetKey(KeyCode.Space);
 
     }
 
-    public void SetJoystickInput(float horizontal)
+    public void SetJoystickInput(float vertical, float horizontal)
     {
+        if(vertical >=0)
+            verticalInput = 1;
+        else
+            verticalInput = -1;
         horizontalInput = horizontal;
     }
 
     public void SetBrakeInput(bool brake) => isBraking = brake;
-    public void SetAccelerationInput(int acceleration) => verticalInput = acceleration;
+    public void SetAccelerationInput(int acceleration) => this.acceleration = acceleration;
 
     private void HandleMotor()
     {
-        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+        frontLeftWheelCollider.motorTorque = verticalInput * acceleration * motorForce;
+        frontRightWheelCollider.motorTorque = verticalInput * acceleration * motorForce;
         currentbreakForce = isBraking ? brakeForce : 0f;
         ApplyBreaking();
     }
