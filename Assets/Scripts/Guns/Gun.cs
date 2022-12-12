@@ -18,11 +18,14 @@ public class Gun : MonoBehaviour
     {
         bulletCount = gunSO.bulletCount;
         gameManager = GameManager.Instance;
+        if(gameManager != null && GetComponentInParent<Car>()!= null)
+            gameManager.UpdateBulletCount(bulletCount);
     }
 
     public void IncreaseBullets(int amount)
     {
         bulletCount += amount;
+        gameManager.UpdateBulletCount(amount);
     }
     public void PrepareToShoot(bool hold)
     {
@@ -56,6 +59,7 @@ public class Gun : MonoBehaviour
             bullet.GetComponent<Rigidbody>().isKinematic = false;
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * shootForce, ForceMode.Impulse);
             bulletCount--;
+            gameManager.UpdateBulletCount(-1);
             yield return new WaitForSeconds(interval);
             if (bulletCount > 0)
             {

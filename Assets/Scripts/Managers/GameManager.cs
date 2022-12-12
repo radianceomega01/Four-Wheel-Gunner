@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,12 +29,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image healthBarFill;
     [SerializeField] Gradient healthColorGradient;
 
+    [Header("Bullets")]
+    [SerializeField] TextMeshProUGUI bullets;
+
     [Header("Panels")]
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject sorryPanel;
     [SerializeField] GameObject victoryPanel;
 
     private Car playerCar;
+    private int totalBulletCount;
     public event Action OnCarSpawned;
     private void Awake()
     {
@@ -90,11 +95,19 @@ public class GameManager : MonoBehaviour
             TimerScript.Instance.SetStatusOfTime(true);
         }
     }
+
     public void UpdateHealthBar(float value)
     {
         healthBar.value = value;
         healthBarFill.color = healthColorGradient.Evaluate(value/ playerCar.GetSO().actualHP);
     }
+
+    public void UpdateBulletCount(int value)
+    {
+        totalBulletCount += value;
+        bullets.text = totalBulletCount.ToString();
+    }
+
     public void OnCarDestroyed()
     {
         Task.Delay(500);
