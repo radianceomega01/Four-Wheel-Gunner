@@ -28,17 +28,14 @@ public class TurretSpawner : MonoBehaviour
             randomTurretGun = Random.Range(0, GameManager.Instance.GetGunList().Count);
             GetRandomSpawnPoint();
 
-            while (turretSpawnPoints.GetChild(randomSpawnPoint).childCount > 0)
-                GetRandomSpawnPoint();
-
             Turret instTurret = Instantiate(turret,
                 turretSpawnPoints.GetChild(randomSpawnPoint).position, Quaternion.identity,
                 turretsParent).GetComponent<Turret>();
 
             Gun gun = GameManager.Instance.GetGunList()[randomTurretGun].GetComponent<Gun>();
             instTurret.Initialize(gun);
+            activeTurrets++;
         }
-        activeTurrets = maxTurrets;
     }
 
     private void GetRandomSpawnPoint()

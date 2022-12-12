@@ -59,7 +59,8 @@ public class Gun : MonoBehaviour
             bullet.GetComponent<Rigidbody>().isKinematic = false;
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * shootForce, ForceMode.Impulse);
             bulletCount--;
-            gameManager.UpdateBulletCount(-1);
+            if(GetComponentInParent<Car>() != null)
+                gameManager.UpdateBulletCount(-1);
             yield return new WaitForSeconds(interval);
             if (bulletCount > 0)
             {
